@@ -42,8 +42,9 @@ dependencies:
   bottom_bar: ^2.0.2
   flutter_toggle_tab: ^1.2.0
   spline_chart: ^0.0.2
-  assorted_layout_widgets: ^7.0.0
   akar_icons_flutter: ^1.1.16
+  flutter_custom_cards: ^0.2.1
+  icons_plus: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -68,10 +69,8 @@ flutter:
   uses-material-design: true
 
   assets:
-     - assets/images/card.png
-     - assets/images/mastercard_logo.png
      - assets/images/avatar.png
-     - assets/images/bankcard.png
+
 
   fonts:
     - family: Montserrat

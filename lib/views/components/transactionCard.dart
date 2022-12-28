@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'constants.dart';
-import 'package:akar_icons_flutter/akar_icons_flutter.dart';
 import 'package:intl/intl.dart';
 
 class TransactionCard extends StatelessWidget {
@@ -10,7 +9,7 @@ class TransactionCard extends StatelessWidget {
   final DateTime? date;
   final DateTime? time;
 
-  TransactionCard(
+  const TransactionCard(
       {required this.title,
       required this.amount,
       required this.date,

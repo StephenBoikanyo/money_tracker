@@ -4,8 +4,6 @@ import 'package:money_tracker/views/screens/screens.dart';
 import 'package:spline_chart/spline_chart.dart';
 import 'package:get/get.dart';
 
-
-
 class HomeScreen extends StatefulWidget {
    static String id = 'HomeScreen';
   @override
@@ -14,22 +12,19 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-
   @override
-
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Padding ( padding: const EdgeInsets.all(20,),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                  RectangularAvatar(avatarWidget: Image.asset('assets/images/avatar.png'),),
-                 RectangularAvatar(avatarWidget: const Icon(Icons.menu)),
+                 RectangularAvatar(avatarWidget: const Icon(AkarIcons.grid)),
                 ],
               ),
               const SizedBox(height: 30),
