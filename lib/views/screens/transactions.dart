@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:money_tracker/views/components/components.dart';
-import  'package:assorted_layout_widgets/assorted_layout_widgets.dart';
-import 'package:intl/intl.dart';
-import 'package:intl/date_symbol_data_local.dart';
+import 'package:akar_icons_flutter/akar_icons_flutter.dart';
+
 
 class TransactionsScreen extends StatefulWidget {
    static String id = 'TransactionScreen';
@@ -12,8 +11,6 @@ class TransactionsScreen extends StatefulWidget {
 }
 
 class _TransactionsScreenState extends State<TransactionsScreen> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,25 +21,8 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('My cards',style: kHeaderTextStyle.copyWith(fontSize: 30,fontWeight:FontWeight.bold),),
-              ColumnSuper(
-                outerDistance: -100,
-                  children: [
-                    Container(
-                      height: 500,
-                      width: double.infinity,
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/images/bankcard.png'),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      child: Column(
-                        children: [],
-                      ),
-                    )
-                  ]
-              ),
-              SizedBox(height: 20),
+              MoneyCard(balance: 6.566,cardNumber: '3456',),
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -52,57 +32,24 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
               ),
               const SizedBox(height: 20,),
               //Transaction component
-              ListTile(
-                leading: CircleAvatar( backgroundColor: Colors.blueGrey,radius: 40,child: Icon(AkarIcons.circle),),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Money Transfer',style: kTitleTextStyle.copyWith(fontSize: 18,fontWeight: FontWeight.bold)),
-                    Text('-R500',style: kTitleTextStyle.copyWith(fontSize: 18,fontWeight: FontWeight.bold)),
-                  ],
-                ),
-                subtitle: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                   Text('April 18,2022'),
-                    Text('11:02 AM')
-                  ],
-                ),
-              ),
-              ListTile(
-                leading: CircleAvatar( backgroundColor: Colors.blueGrey,radius: 40,child: Icon(AkarIcons.dribbble_fill),),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Dribble',style: kTitleTextStyle.copyWith(fontSize: 18,fontWeight: FontWeight.bold)),
-                    Text('-R500',style: kTitleTextStyle.copyWith(fontSize: 18,fontWeight: FontWeight.bold)),
-                  ],
-                ),
-                subtitle: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text('April 18,2022'),
-                    Text('11:02 AM')
-                  ],
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      TransactionCard(title: 'Youtube Primium', amount: 500, date: DateTime.now(), time: DateTime.now(), transactionIcon: AkarIcons.youtube_fill),
+                      TransactionCard(title: 'Dribble', amount: 300, date: DateTime.now(), time: DateTime.now(), transactionIcon: AkarIcons.dribbble_fill),
+                      TransactionCard(title: 'Twitter Blue', amount: 110, date: DateTime.now(), time: DateTime.now(), transactionIcon: AkarIcons.twitter_fill),
+                      TransactionCard(title: 'LinkedIn Primium', amount: 700, date: DateTime.now(), time: DateTime.now(), transactionIcon: AkarIcons.linkedin_fill),
+
+                      TransactionCard(title: 'Youtube Primium', amount: 500, date: DateTime.now(), time: DateTime.now(), transactionIcon: AkarIcons.youtube_fill),
+                      TransactionCard(title: 'Dribble', amount: 300, date: DateTime.now(), time: DateTime.now(), transactionIcon: AkarIcons.dribbble_fill),
+                      TransactionCard(title: 'Twitter Blue', amount: 110, date: DateTime.now(), time: DateTime.now(), transactionIcon: AkarIcons.twitter_fill),
+                      TransactionCard(title: 'LinkedIn Primium', amount: 700, date: DateTime.now(), time: DateTime.now(), transactionIcon: AkarIcons.linkedin_fill)
+
+                    ],
+                  ),
                 ),
               ),
-              ListTile(
-                leading: CircleAvatar( backgroundColor: Colors.yellow,radius: 40,child: Icon(AkarIcons.utensils),),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Takeaway',style: kTitleTextStyle.copyWith(fontSize: 18,fontWeight: FontWeight.bold)),
-                    Text('-R500',style: kTitleTextStyle.copyWith(fontSize: 18,fontWeight: FontWeight.bold)),
-                  ],
-                ),
-                subtitle: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text('April 18,2022'),
-                    Text('11:02 AM')
-                  ],
-                ),
-              )
 
 
             ],
