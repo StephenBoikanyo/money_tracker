@@ -38,13 +38,13 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^4.6.5
   sqflite: ^2.2.2
-  fl_chart: ^0.55.2
   bottom_bar: ^2.0.2
   flutter_toggle_tab: ^1.2.0
   spline_chart: ^0.0.2
   akar_icons_flutter: ^1.1.16
   flutter_custom_cards: ^0.2.1
   icons_plus: ^3.0.0
+  syncfusion_flutter_charts: ^20.4.38
 
 dev_dependencies:
   flutter_test:
