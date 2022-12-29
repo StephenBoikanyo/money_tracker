@@ -13,6 +13,7 @@ class TransactionsScreen extends StatefulWidget {
 class _TransactionsScreenState extends State<TransactionsScreen> {
   @override
   Widget build(BuildContext context) {
+    int currentPage = 2;
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -45,17 +46,16 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                       TransactionCard(title: 'Dribble', amount: 300, date: DateTime.now(), time: DateTime.now(), transactionIcon: AkarIcons.dribbble_fill),
                       TransactionCard(title: 'Twitter Blue', amount: 110, date: DateTime.now(), time: DateTime.now(), transactionIcon: AkarIcons.twitter_fill),
                       TransactionCard(title: 'LinkedIn Primium', amount: 700, date: DateTime.now(), time: DateTime.now(), transactionIcon: AkarIcons.linkedin_fill)
-
                     ],
                   ),
                 ),
               ),
 
-
             ],
           ),
         ),
       ),
+      bottomNavigationBar: BottomNavBar(currentPage:currentPage ,),
     );
   }
 }

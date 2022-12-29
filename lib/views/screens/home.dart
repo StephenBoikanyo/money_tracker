@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:money_tracker/views/components/components.dart';
 import 'package:money_tracker/views/screens/screens.dart';
-import 'package:spline_chart/spline_chart.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'dart:ffi';
-
-import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 class HomeScreen extends StatefulWidget {
    static String id = 'HomeScreen';
@@ -26,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ChartData('April', 27),
       ChartData('May', 40)
     ];
-
+    int currentPage = 0;
     return Scaffold(
       body: SafeArea(
         child: Padding ( padding: const EdgeInsets.all(20,),
@@ -102,6 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
         ),),
       ),
+      bottomNavigationBar: BottomNavBar(currentPage: currentPage,),
     );
   }
 }
