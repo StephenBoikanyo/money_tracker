@@ -3,6 +3,10 @@ import 'package:money_tracker/views/components/components.dart';
 import 'package:money_tracker/views/screens/screens.dart';
 import 'package:spline_chart/spline_chart.dart';
 import 'package:get/get.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
+import 'dart:ffi';
+
+import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 class HomeScreen extends StatefulWidget {
    static String id = 'HomeScreen';
@@ -14,6 +18,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    final List<ChartData> chartData =<ChartData> [
+      ChartData('Jan', 35),
+      ChartData('Feb', 13),
+      ChartData('March', 34),
+      ChartData('April', 27),
+      ChartData('May', 40)
+    ];
+
     return Scaffold(
       body: SafeArea(
         child: Padding ( padding: const EdgeInsets.all(20,),
@@ -46,13 +59,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.all(20.0),
                 child: Center(
                   //Place holder chart for boiler plate
-                  child: SplineChart(
-                    values: {0:10,15:30,50:10,44:100,80:50,100:90},
-                    verticalLineEnabled: true,
-                    verticalLineStrokeWidth: 2.0,
-                    width: 450,
-                    height: 300,
-                  ),
+                  child: Container(
+                child: SfCartesianChart(
+                  primaryXAxis: CategoryAxis(),
+                series: <ChartSeries>[
+                    SplineSeries<ChartData, String>(
+                    dataSource: chartData,
+                    splineType: SplineType.cardinal,
+                    cardinalSplineTension: 0.9,
+                    xValueMapper: (ChartData month, _) => month.month,
+                    yValueMapper: (ChartData amount, _) => amount.amount,
+                )
+                  ]
+              )
+        )
                 ),
               ),
               const SizedBox(height: 10,),
@@ -84,6 +104,12 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+}
+
+class ChartData {
+  ChartData(this.month,this.amount);
+  final String month;
+  final double? amount;
 }
 
 
