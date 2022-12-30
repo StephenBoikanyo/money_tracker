@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
+import 'package:get/get.dart';
 import 'constants.dart';
 
 
 class chartToggle extends StatefulWidget {
-  const chartToggle({Key? key}) : super(key: key);
+   final int tabTextIndexSelected;
+   final Function setTabIndexSelected;
 
-  @override
+  const chartToggle({required this.tabTextIndexSelected, required this.setTabIndexSelected});
+
+   @override
   State<chartToggle> createState() => _chartToggleState();
 }
-
 class _chartToggleState extends State<chartToggle> {
-  var _tabTextIndexSelected = 1;
+  var indexValue;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.black12
-        ,
+        color: Colors.black12,
         borderRadius: BorderRadius.circular(17),
       ),
       child: Padding(
@@ -29,12 +32,10 @@ class _chartToggleState extends State<chartToggle> {
           selectedTextStyle: kTitleTextStyle.copyWith(color: Colors.white),
           unSelectedTextStyle: kTitleTextStyle.copyWith(color: Colors.black),
           labels: toggleOptions,
-          selectedIndex: _tabTextIndexSelected,
-          selectedLabelIndex: (index) {
-            setState(() {
-              _tabTextIndexSelected = index;
-            });
-          },
+          selectedIndex: widget.tabTextIndexSelected,
+          selectedLabelIndex: (index) =>
+           widget.setTabIndexSelected(index)
+
         ),
       ),
     );

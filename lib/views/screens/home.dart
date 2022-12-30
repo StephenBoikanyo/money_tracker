@@ -1,112 +1,99 @@
 import 'package:flutter/material.dart';
 import 'package:money_tracker/views/components/components.dart';
-import 'package:money_tracker/views/screens/screens.dart';
-import 'package:get/get.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:money_tracker/services/services.dart';
 
 class HomeScreen extends StatefulWidget {
-   static String id = 'HomeScreen';
+  static String id = 'HomeScreen';
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
 
+  late int tabTextIndexSelected ;
+  @override
+  void initState() {
+    // TODO: implement initState
+   tabTextIndexSelected  =0 ;
+    super.initState();
+
+  }
+
+
   @override
   Widget build(BuildContext context) {
-
-    final List<ChartData> chartData =<ChartData> [
-      ChartData('Jan', 35),
-      ChartData('Feb', 13),
-      ChartData('March', 34),
-      ChartData('April', 27),
-      ChartData('May', 40)
-    ];
     int currentPage = 0;
     return Scaffold(
       body: SafeArea(
-        child: Padding ( padding: const EdgeInsets.all(20,),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Padding(
+          padding: const EdgeInsets.all(
+            20,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                 RectangularAvatar(avatarWidget: Image.asset('assets/images/avatar.png'),),
-                 RectangularAvatar(avatarWidget: const Icon(AkarIcons.grid)),
+                  RectangularAvatar(
+                    avatarWidget: Image.asset('assets/images/avatar.png'),
+                  ),
+                  RectangularAvatar(avatarWidget: const Icon(AkarIcons.grid)),
                 ],
               ),
               const SizedBox(height: 30),
               Row(
                 children: [
-                  Text(greetResp, style: kHelperTextStyle,),
-                  const SizedBox(width: 5,),
-                  const Text(', Stephen!', style : kHelperTextStyle),
+                  Text(
+                    greetResp,
+                    style: kHelperTextStyle,
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  const Text(', Stephen!', style: kHelperTextStyle),
                 ],
               ),
-              const SizedBox(height: 10,),
-              Text('Last year\'s report 💵', style: kTitleTextStyle.copyWith(fontWeight: FontWeight.bold),),
-              const SizedBox(height: 20,),
-              const Center(
-                child: chartToggle(),
+              const SizedBox(
+                height: 20,
               ),
-              const SizedBox(height: 20,),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Center(
-                  //Place holder chart for boiler plate
-                  child: Container(
-                child: SfCartesianChart(
-                  primaryXAxis: CategoryAxis(),
-                series: <ChartSeries>[
-                    SplineSeries<ChartData, String>(
-                    dataSource: chartData,
-                    splineType: SplineType.cardinal,
-                    cardinalSplineTension: 0.9,
-                    xValueMapper: (ChartData month, _) => month.month,
-                    yValueMapper: (ChartData amount, _) => amount.amount,
-                )
-                  ]
-              )
-        )
-                ),
+              Text(
+                'Last year\'s report 💵',
+                style: kTitleTextStyle.copyWith(fontWeight: FontWeight.bold),
               ),
-              const SizedBox(height: 10,),
-              InkWell(
-                onTap: ()=> Get.toNamed(TransactionsScreen.id) ,
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.black,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: ListTile(
-                      leading: const CircleAvatar(
-                        radius: 25,
-                        backgroundColor: Colors.white,
-                        child: Text("👏"),
-                      ),
-                      title: Text('Well done, Stephen!',
-                        style: kTitleTextStyle.copyWith( color: Colors.white, fontSize: 18),),
-                      subtitle: Text('Your capital has a positive trend',
-                        style: kHelperTextStyle.copyWith(color: Colors.grey, fontSize: 14)),
-                    ),
-                  ),
-                ),
+              const SizedBox(
+                height: 20,
               ),
+              Center(
+                child: chartToggle(tabTextIndexSelected: tabTextIndexSelected,
+                  setTabIndexSelected: (index){
+                  setState(() {
+                    tabTextIndexSelected = index;
+                  });
+                },),
+              ),
+
+              const SizedBox(
+                height: 20,
+              ),
+              Expanded(
+                  child: tabTextIndexSelected == 0
+                      ? IncomeChart(income: income)
+                      : ExpensesChart(expenses: expenses)),
+
+              const SizedBox(
+                height: 20,
+              ),
+
+              TrendMessage(),
             ],
-        ),),
+          ),
+        ),
       ),
-      bottomNavigationBar: BottomNavBar(currentPage: currentPage,),
+      bottomNavigationBar: BottomNavBar(
+        currentPage: currentPage,
+      ),
     );
   }
 }
-
-class ChartData {
-  ChartData(this.month,this.amount);
-  final String month;
-  final double? amount;
-}
-
-
