@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 class TransactionCard extends StatelessWidget {
   final IconData? transactionIcon;
   final String? title;
-  final int? amount;
+  final double? amount;
   final DateTime? date;
   final DateTime? time;
 
