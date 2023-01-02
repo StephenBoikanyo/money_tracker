@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:money_tracker/views/components/components.dart';
-import 'package:akar_icons_flutter/akar_icons_flutter.dart';
+import 'package:money_tracker/models/models.dart';
 
 
 class TransactionsScreen extends StatefulWidget {
@@ -11,6 +11,7 @@ class TransactionsScreen extends StatefulWidget {
 }
 
 class _TransactionsScreenState extends State<TransactionsScreen> {
+
   @override
   Widget build(BuildContext context) {
     int currentPage = 2;
@@ -22,7 +23,10 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('My cards',style: kHeaderTextStyle.copyWith(fontSize: 30,fontWeight:FontWeight.bold),),
-              MoneyCard(balance: 6.566,cardNumber: '3456',),
+              InkWell(onTap:(){
+                print(DateTime.now());
+
+              },child: MoneyCard(balance: demoAcc.balance   ,cardNumber: '${demoAcc.accountNumber}',)),
               const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -34,23 +38,22 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
               const SizedBox(height: 20,),
               //Transaction component
               Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      TransactionCard(title: 'Youtube Primium', amount: 500, date: DateTime.now(), time: DateTime.now(), transactionIcon: AkarIcons.youtube_fill),
-                      TransactionCard(title: 'Dribble', amount: 300, date: DateTime.now(), time: DateTime.now(), transactionIcon: AkarIcons.dribbble_fill),
-                      TransactionCard(title: 'Twitter Blue', amount: 110, date: DateTime.now(), time: DateTime.now(), transactionIcon: AkarIcons.twitter_fill),
-                      TransactionCard(title: 'LinkedIn Primium', amount: 700, date: DateTime.now(), time: DateTime.now(), transactionIcon: AkarIcons.linkedin_fill),
-
-                      TransactionCard(title: 'Youtube Primium', amount: 500, date: DateTime.now(), time: DateTime.now(), transactionIcon: AkarIcons.youtube_fill),
-                      TransactionCard(title: 'Dribble', amount: 300, date: DateTime.now(), time: DateTime.now(), transactionIcon: AkarIcons.dribbble_fill),
-                      TransactionCard(title: 'Twitter Blue', amount: 110, date: DateTime.now(), time: DateTime.now(), transactionIcon: AkarIcons.twitter_fill),
-                      TransactionCard(title: 'LinkedIn Primium', amount: 700, date: DateTime.now(), time: DateTime.now(), transactionIcon: AkarIcons.linkedin_fill)
-                    ],
+                child: Container(
+                  width: double.infinity,
+                  height: 300,
+                  child: ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    itemCount: totalTransactions.length,
+                    itemBuilder: (BuildContext context, int index){
+                      return TransactionCard(title: totalTransactions[index].description,
+                          amount: totalTransactions[index].amount,
+                          date: totalTransactions[index].date,
+                          time: totalTransactions[index].date,
+                          transactionIcon: AkarIcons.money);
+                    },
                   ),
                 ),
               ),
-
             ],
           ),
         ),
