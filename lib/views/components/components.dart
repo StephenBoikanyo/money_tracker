@@ -7,3 +7,4 @@ export 'moneyCard.dart';
 export 'bottomBar.dart';
 export 'expensesChart.dart';
 export 'incomeChart.dart';
+export 'trendMessage.dart';

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 //Text Style constants
 const kHeaderTextStyle = TextStyle(color: Colors.black,fontFamily: 'Roboto',fontSize: 35);
 const kTitleTextStyle  = TextStyle(color: Colors.black,fontFamily: 'Roboto',fontSize: 25);

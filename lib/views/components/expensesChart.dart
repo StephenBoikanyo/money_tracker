@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:money_tracker/services/services.dart';
+import 'package:money_tracker/models/models.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class ExpensesChart extends StatelessWidget {
