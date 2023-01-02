@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:money_tracker/services/services.dart';
+import 'package:money_tracker/models/models.dart';
 
 void main() {
   test('BankTransaction test', () {
@@ -9,7 +9,12 @@ void main() {
     final amount = 100.0;
     final description = 'Test transaction';
 
-    final transaction = BankTransaction(transactionId, accountNumber, date, amount, description);
+    final transaction = BankTransaction(
+        transactionId: transactionId,
+        accountNumber :accountNumber,
+        date :date ,
+        amount :amount,
+        description :description);
 
     expect(transaction.transactionId, transactionId);
     expect(transaction.accountNumber, accountNumber);
