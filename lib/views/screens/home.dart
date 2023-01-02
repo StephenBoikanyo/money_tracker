@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:money_tracker/views/components/components.dart';
-import 'package:money_tracker/services/services.dart';
+import 'package:money_tracker/models/models.dart';
 
 class HomeScreen extends StatefulWidget {
   static String id = 'HomeScreen';
@@ -17,10 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
     // TODO: implement initState
    tabTextIndexSelected  =0 ;
     super.initState();
-
   }
-
-
   @override
   Widget build(BuildContext context) {
     int currentPage = 0;
@@ -52,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(
                     width: 5,
                   ),
-                  const Text(', Stephen!', style: kHelperTextStyle),
+                  Text(', ${demoAcc.accountHolder}!', style: kHelperTextStyle),
                 ],
               ),
               const SizedBox(
@@ -85,7 +82,6 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 20,
               ),
-
               TrendMessage(),
             ],
           ),
