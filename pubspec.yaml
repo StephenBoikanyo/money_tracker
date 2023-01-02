@@ -45,6 +45,7 @@ dependencies:
   flutter_custom_cards: ^0.2.1
   icons_plus: ^3.0.0
   syncfusion_flutter_charts: ^20.4.38
+  get_storage: ^2.0.3
 
 dev_dependencies:
   flutter_test:
