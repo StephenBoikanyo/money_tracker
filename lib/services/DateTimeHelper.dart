@@ -1,7 +1,7 @@
 
 class DateTimeHelper {
 
-  late String date ;
+  late String? date ;
 
   DateTimeHelper(this.date);
 
