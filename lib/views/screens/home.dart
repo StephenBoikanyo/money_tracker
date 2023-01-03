@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:money_tracker/services/ChartHelper.dart';
 import 'package:money_tracker/views/components/components.dart';
 import 'package:money_tracker/models/models.dart';
 
@@ -12,11 +13,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
 
   late int tabTextIndexSelected ;
+
+  ChartHelper chartHelper =  ChartHelper(date);
+
   @override
   void initState() {
-    // TODO: implement initState
    tabTextIndexSelected  =0 ;
     super.initState();
+    chartHelper.ChartIncomeTotals(totalTransactions);
   }
   @override
   Widget build(BuildContext context) {
@@ -82,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 20,
               ),
-              TrendMessage(),
+              const TrendMessage(),
             ],
           ),
         ),
