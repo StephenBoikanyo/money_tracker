@@ -3,7 +3,7 @@
 class BankTransaction {
  final String? transactionId;
   final String? accountNumber;
-  final DateTime? date;
+  final String? date;
   final double? amount;
   final String? description;
 
@@ -21,7 +21,7 @@ class BankTransaction {
     Map<String,dynamic> toJson()=> {
     'transactionId' : transactionId,
     'accountNumber' : accountNumber,
-    'date' : date?.toIso8601String(),
+    'date' : date,
     'amount': amount,
     'description' :description
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:money_tracker/services/dateTimeHelper.dart';
 import 'constants.dart';
 import 'package:intl/intl.dart';
 
@@ -6,8 +7,8 @@ class TransactionCard extends StatelessWidget {
   final IconData? transactionIcon;
   final String? title;
   final double? amount;
-  final DateTime? date;
-  final DateTime? time;
+  final String? date;
+  final String? time;
 
   const TransactionCard(
       {required this.title,
@@ -20,8 +21,11 @@ class TransactionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     String? value_ = amount.toString();
 
-    String date_  = DateFormat.yMMMd().format(DateTime.now());
-    String? time_ = DateFormat.jm().format(DateTime.now());
+    DateTimeHelper dateTimeHelper = new DateTimeHelper(date!);
+   var _date =  dateTimeHelper.toDateTime(date!);
+
+    String date_  = DateFormat.yMMMd().format(_date).toString();
+    String? time_ = DateFormat.jm().format(_date).toString();
 
     return ListTile(
       leading: CircleAvatar(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:money_tracker/services/DatabaseHelper.dart';
 import 'package:money_tracker/views/components/components.dart';
 import 'package:money_tracker/models/models.dart';
 
@@ -11,7 +12,14 @@ class TransactionsScreen extends StatefulWidget {
 }
 
 class _TransactionsScreenState extends State<TransactionsScreen> {
-
+ 
+  
+  @override
+  void initState() {
+    DatabaseHelper().createDummies();
+    super.initState();
+  }
+  
   @override
   Widget build(BuildContext context) {
     int currentPage = 2;
@@ -36,24 +44,39 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                 ],
               ),
               const SizedBox(height: 20,),
-              //Transaction component
               Expanded(
-                child: Container(
-                  width: double.infinity,
-                  height: 300,
-                  child: ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    itemCount: totalTransactions.length,
-                    itemBuilder: (BuildContext context, int index){
-                      return TransactionCard(title: totalTransactions[index].description,
-                          amount: totalTransactions[index].amount,
-                          date: totalTransactions[index].date,
-                          time: totalTransactions[index].date,
-                          transactionIcon: AkarIcons.money);
-                    },
-                  ),
+                child: FutureBuilder<List<BankTransaction>?>(
+                  future: DatabaseHelper.getAllTransations(),
+                  builder: (context, AsyncSnapshot<List<BankTransaction>?> snapshot){
+                    if (snapshot.connectionState == ConnectionState.waiting){
+                      return const CircularProgressIndicator();
+                    }else if (snapshot.hasError){
+                      return Center(child: Text(snapshot.error.toString(),style: kHeaderTextStyle,),);
+                    }else if (snapshot.hasData){
+                      if (snapshot.data !=null){
+                        return Container(
+                          width: double.infinity,
+                          height: 300,
+                          child: ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            itemCount: totalTransactions.length,
+                            itemBuilder: (BuildContext context, int index){
+                              return TransactionCard(
+                                  title: snapshot.data?[index].description,
+                                  amount: snapshot.data?[index].amount,
+                                  date: snapshot.data?[index].date,
+                                  time: snapshot.data?[index].date,
+                                  transactionIcon: AkarIcons.money);
+                            },
+                          ),
+                        );
+                      }
+                    }
+                    return Text("Internal Error"); 
+                  }
+                  ,
                 ),
-              ),
+              )
             ],
           ),
         ),
