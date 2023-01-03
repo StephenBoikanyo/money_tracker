@@ -1,6 +1,6 @@
 import '../models/models.dart';
 
-class TransactionService {
+class TransactionHelper {
 
   late List<BankTransaction> transactions;
 
