@@ -1,6 +1,5 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-import 'package:money_tracker/models/BankTransaction.dart';
 import 'package:money_tracker/models/models.dart';
 
 class DatabaseHelper {

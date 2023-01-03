@@ -21,7 +21,7 @@ class TransactionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     String? value_ = amount.toString();
 
-    DateTimeHelper dateTimeHelper = new DateTimeHelper(date!);
+    DateTimeHelper dateTimeHelper =  DateTimeHelper(date!);
    var _date =  dateTimeHelper.toDateTime(date!);
 
     String date_  = DateFormat.yMMMd().format(_date).toString();

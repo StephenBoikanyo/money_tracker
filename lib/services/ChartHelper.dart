@@ -7,6 +7,10 @@ class ChartHelper extends DateTimeHelper {
   List<double> months = [];
 
   //For Mock Chart Data ..... Would use getAll() from DB to plot
+  //Getting all values from Mock Bank Transaction data
+  // This function uses a conditional to check for month and year
+  // If the month and year correspond, an amount value is tallied under the condition it is in that month
+
   List<double> ChartIncomeTotals(List<BankTransaction> totalTransactions) {
     double janIncome = 0;
     double febIncome = 0;
@@ -20,6 +24,7 @@ class ChartHelper extends DateTimeHelper {
     double octIncome = 0;
     double novIncome = 0;
     double decIncome = 0;
+
     for (int i = 0; i < totalTransactions.length; i++) {
       BankTransaction transaction = totalTransactions[i];
       var date = toDateTime(transaction.date.toString());

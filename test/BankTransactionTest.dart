@@ -3,11 +3,11 @@ import 'package:money_tracker/models/models.dart';
 
 void main() {
   test('BankTransaction test', () {
-    final transactionId = '123';
-    final accountNumber = '456';
-    final date = '2023-01-02 23:18:03.677';
-    final amount = 100.0;
-    final description = 'Test transaction';
+    const transactionId = '123';
+    const accountNumber = '456';
+    const date = '2023-01-02 23:18:03.677';
+    const amount = 100.0;
+    const description = 'Test transaction';
 
     final transaction = BankTransaction(
         transactionId: transactionId,

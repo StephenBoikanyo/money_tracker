@@ -1,8 +1,5 @@
 import 'package:money_tracker/services/ChartHelper.dart';
-
 import 'models.dart';
-import 'ChartData.dart';
-import 'package:money_tracker/services/services.dart';
 
 BankAccount demoAcc = BankAccount('34562', 'Stephen', 2000);
 var date = '';
@@ -72,7 +69,7 @@ List<BankTransaction> totalTransactions = [
 
 ];
 
-
+//RangeError (index): Invalid value: Valid value range is empty: 0 ??? why
 final List<ChartData> income_ =<ChartData> [
   ChartData('Jan 21', chartHelper.months[0] ),
   ChartData('Feb 21', chartHelper.months[1]),
@@ -90,18 +87,18 @@ final List<ChartData> income_ =<ChartData> [
 ];
 
 final List<ChartData> income =<ChartData> [
-  ChartData('Jan 21', chartHelper.months[0] ),
-  ChartData('Feb 21', chartHelper.months[1]),
-  ChartData('Mar 21', chartHelper.months[2]),
-  ChartData('Apr 21', chartHelper.months[3]),
-  ChartData('May 21', chartHelper.months[4]),
-  ChartData('Jun 21', chartHelper.months[5]),
-  ChartData('Jul 21', chartHelper.months[6]),
-  ChartData('Aug 21', chartHelper.months[7]),
-  ChartData('Sep 21', chartHelper.months[8]),
-  ChartData('Oct 21', chartHelper.months[9]),
-  ChartData('Nov 21', chartHelper.months[10]),
-  ChartData('Dec 21', chartHelper.months[11]),
+  ChartData('Jan 21', 13000 ),
+  ChartData('Feb 21', 17000),
+  ChartData('Mar 21',20000),
+  ChartData('Apr 21', 28000),
+  ChartData('May 21', 32000),
+  ChartData('Jun 21', 45000),
+  ChartData('Jul 21', 55000),
+  ChartData('Aug 21', 60000),
+  ChartData('Sep 21', 62000),
+  ChartData('Oct 21', 20000),
+  ChartData('Nov 21', 70000),
+  ChartData('Dec 21', 85000),
 
 ];
 

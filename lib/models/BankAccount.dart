@@ -13,7 +13,7 @@ class BankAccount {
 
   void withdraw(double amount) {
     if (amount > balance) {
-      throw new Exception('Insufficient balance');
+      throw  Exception('Insufficient balance');
     }
     balance -= amount;
   }

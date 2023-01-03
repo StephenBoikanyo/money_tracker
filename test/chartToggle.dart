@@ -2,13 +2,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
 import 'package:money_tracker/views/components/chartToggle.dart';
-import 'package:money_tracker/views/screens/home.dart';
 
 void main() {
   testWidgets('chartToggle test', (WidgetTester tester) async {
     // Create a mock function to be passed to the chartToggle widget
     int tabIndexSelected =0;
-    final setTabIndexSelected = (index) => tabIndexSelected = index;
+    setTabIndexSelected(index) => tabIndexSelected = index;
 
     // Build the chartToggle widget
     await tester.pumpWidget(

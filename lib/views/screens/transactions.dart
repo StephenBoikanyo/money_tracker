@@ -31,10 +31,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('My cards',style: kHeaderTextStyle.copyWith(fontSize: 30,fontWeight:FontWeight.bold),),
-              InkWell(onTap:(){
-                print(DateTime.now());
-
-              },child: MoneyCard(balance: demoAcc.balance   ,cardNumber: '${demoAcc.accountNumber}',)),
+              MoneyCard(balance: demoAcc.balance   ,cardNumber: demoAcc.accountNumber,),
               const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -54,9 +51,8 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                       return Center(child: Text(snapshot.error.toString(),style: kHeaderTextStyle,),);
                     }else if (snapshot.hasData){
                       if (snapshot.data !=null){
-                        return Container(
-                          width: double.infinity,
-                          height: 300,
+                        return SizedBox(
+                          height: 350,
                           child: ListView.builder(
                             scrollDirection: Axis.vertical,
                             itemCount: totalTransactions.length,
@@ -72,7 +68,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                         );
                       }
                     }
-                    return Text("Internal Error"); 
+                    return const Text("Internal Error");
                   }
                   ,
                 ),
