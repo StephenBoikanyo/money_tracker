@@ -8,8 +8,8 @@ A Sinov8 technical assignment.
 This project is built in Flutter /Dart
 
 <p align="middle">
-  <img src="/homeScreen.png" width="150" height="150" />
-  <img src="/transactionsScreen.png" width="150" height="150" /> 
+  <img src="/homeScreen.png" width="100" height="200" />
+  <img src="/transactionsScreen.png" width="100" height="200" /> 
   
 </p>
 
@@ -27,16 +27,18 @@ For help visit
 https://docs.flutter.dev/get-started/install
 
 Once Flutter is installed in your terminal run
-'''
+
+```
 $ flutter pub get 
-'''
+```
 
 To run this project... Make sure you have an emulator mounted... 
 
 And finally execute 
-'''
+
+```
 $ flutter run 
-'''
+```
 
 
 
