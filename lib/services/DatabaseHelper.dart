@@ -1,6 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:money_tracker/models/BankTransaction.dart';
+import 'package:money_tracker/models/models.dart';
 
 class DatabaseHelper {
   static const int _version = 1;
@@ -9,34 +10,26 @@ class DatabaseHelper {
   static Future<Database> _getDB() async {
     return openDatabase(join(await getDatabasesPath(), _dbname),
         onCreate: (db, version) async => await db.execute(
-            '''
-        CREATE TABLE bank_transactions (
-        transactionId TEXT PRIMARY KEY,
-        accountNumber TEXT,
-        date TEXT,
-        amount REAL,
-        description TEXT
-            )
-         '''
+            "CREATE TABLE BankTransactions(transactionId TEXT PRIMARY KEY,accountNumber TEXT,date TEXT,amount REAL,description TEXT);"
         ), version: _version);
   }
 
   static Future<int> addBankTransaction(BankTransaction transaction) async {
     final db = await _getDB();
-    return await db.insert('BankTransaction', BankTransaction().toJson(),
+    return await db.insert('BankTransactions', BankTransaction().toJson(),
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   static Future<int> updateBankTransaction(BankTransaction transaction) async {
     final db = await _getDB();
-    return await db.update("Bank Transaction", BankTransaction().toJson(),
+    return await db.update("BankTransactions", BankTransaction().toJson(),
         where: 'transactionId = ?',
         whereArgs: [BankTransaction().transactionId]);
   }
 
   static Future<int> deleteBankTransaction(BankTransaction transaction) async {
     final db = await _getDB();
-    return await db.delete("Bank Transaction",
+    return await db.delete("BankTransactions",
         where: 'transactionId = ?',
         whereArgs: [BankTransaction().transactionId]);
   }
@@ -44,7 +37,7 @@ class DatabaseHelper {
   static Future<List<BankTransaction>?> getAllTransations() async {
     final db = await _getDB();
 
-    final List<Map<String, dynamic>> maps = await db.query("BankTransaction");
+    final List<Map<String, dynamic>> maps = await db.query("BankTransactions");
 
     if (maps.isEmpty) {
       return null;
@@ -53,20 +46,20 @@ class DatabaseHelper {
         maps.length, (index) => BankTransaction.fromJson(maps[index]));
   }
 
-  //function for dummy data
 
-  await db.transaction((txn) async {
-  for (final transaction in transactions) {
-  await txn.insert(
-  'transactions',
-  transaction.toMap(),
-  conflictAlgorithm: ConflictAlgorithm.replace,
-  );
+  // Insert the BankTransaction objects into the database.
+  void createDummies() async{
+    final db = await _getDB();
+    await db.transaction((txn) async {
+      for (final transaction in totalTransactions) {
+        await txn.insert(
+          'BankTransactions',
+          transaction.toJson(),
+          conflictAlgorithm: ConflictAlgorithm.replace,
+        );
+      }
+    });
   }
-  });
-
-
-
 
 }
 
