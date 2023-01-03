@@ -13,6 +13,10 @@ This project is built in Flutter /Dart
   
 </p>
 
+
+<img width="1141" alt="Screenshot 2023-01-03 at 11 52 11" src="https://user-images.githubusercontent.com/20774982/210335565-15126c5e-51a3-40d8-af05-2393bd0db815.png">
+
+
 ## Dependancies 
 >* GetX for routing
 >* SQFLite for local data storage. 
@@ -43,6 +47,4 @@ $ flutter run
 Link to App
 
 https://drive.google.com/drive/folders/1Ao6dAp-BQwkpAH1nW2thFOe07aOvuEhu?usp=share_link
-
-
 
